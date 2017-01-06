@@ -4,12 +4,10 @@ MAINTAINER David Audet <david.audet@ca.com>
 LABEL Description="Eclipse Mosquitto MQTT Broker"
 
 RUN apk --no-cache add mosquitto=1.4.10-r2 && \
-    mkdir -p /mosquitto/config /mosquitto/data /mosquitto/log && \
-#    cp /etc/mosquitto/mosquitto.conf /mosquitto/config && \
-    chown -R mosquitto:mosquitto /mosquitto
+    mkdir -p /mosquitto/config /mosquitto/data /mosquitto/log
 
 ADD mosquitto.conf /mosquitto/config/
-RUN chown mosquitto:mosquitto /mosquitto/config/mosquitto.conf
+RUN chown mosquitto:mosquitto -R /mosquitto
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
