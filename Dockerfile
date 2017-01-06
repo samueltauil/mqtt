@@ -8,7 +8,6 @@ RUN apk --no-cache add mosquitto=1.4.10-r2 && \
 #    cp /etc/mosquitto/mosquitto.conf /mosquitto/config && \
     chown -R mosquitto:mosquitto /mosquitto
 
-USER mosquitto
 ADD mosquitto.conf /mosquitto/config/
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
