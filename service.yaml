@@ -1,0 +1,37 @@
+   {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "mqtt",
+        "creationTimestamp": null,
+        "labels": {
+          "name": "mqtt"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "native",
+            "protocol": "TCP",
+            "port": 1883,
+            "targetPort": 1883,
+            "nodePort": 0
+          },
+          {
+            "name": "websocket",
+            "protocol": "TCP",
+            "port": 9001,
+            "targetPort": 9001,
+            "nodePort": 0
+          }
+        ],
+        "selector": {
+          "app": "mqtt"
+        },
+        "type": "ClusterIP",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    }
